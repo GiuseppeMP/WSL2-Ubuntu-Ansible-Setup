@@ -1,0 +1,6 @@
+---
+- hosts: wvd_dev_machine
+  become_method: sudo
+  roles:
+     - shell
+     - apt

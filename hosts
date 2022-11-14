@@ -1,0 +1,2 @@
+[wvd_dev_machine]
+localhost   ansible_connection=local

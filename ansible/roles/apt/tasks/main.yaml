@@ -1,0 +1,39 @@
+---
+# APT
+
+- name: Adicionar repositórios do APT
+  shell: 
+    cmd: "{{ item }}"
+    warn: false
+  with_items: '{{ apt.repositories }}'
+
+- name: Atualizar apt
+  shell: apt update -y
+  become: yes
+
+- name: Atualizar todos os packages
+  shell: apt upgrade -y
+  become: yes
+
+- name: Deletar os packages não utilizados
+  shell: apt clean autoremove -y
+  become: yes
+
+- name: Instalar packages que são dependências de outros
+  shell: apt install {{ item }} -y
+  with_items: 
+    - '{{ apt.base_packages }}'
+  become: yes
+
+- name: Instalar coisas que possuem script custom
+  shell: 
+    cmd: "{{ item }}"
+    warn: false
+  with_items: '{{ apt.script_packages }}'
+  become: no
+
+- name: Instalar packages
+  shell: apt install {{ item }} -y
+  with_items: 
+    - '{{ apt.packages }}'
+  become: yes
