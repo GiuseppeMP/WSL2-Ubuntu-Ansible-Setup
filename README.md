@@ -1,4 +1,4 @@
-# Fresh Ubuntu WSL2 Install
+# Ubuntu / Macos fresh install
 
 ## Dependencies
 You need the following things installed before hand
